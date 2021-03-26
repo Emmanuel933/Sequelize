@@ -1,0 +1,12 @@
+body, html{
+    font: normal 18px/1.5;
+    font-family: 'Raleway', sans-serif;
+    background: greenyellow;
+    color: black;
+    min-width: 960px;
+    color: black;
+}
+
+td {
+    width: 6%;
+}
