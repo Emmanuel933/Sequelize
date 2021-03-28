@@ -1,12 +1,23 @@
 body, html{
     font: normal 18px/1.5;
     font-family: 'Raleway', sans-serif;
-    background: greenyellow;
+    background: green;
     color: black;
     min-width: 960px;
     color: black;
 }
+table{
+    width: 20%;
+}
 
 td {
-    width: 6%;
+   background-color: cadetblue;
+
+}
+h1{
+    text-align: center;
+   
+}
+tr{
+    background-color: darkgray;
 }
