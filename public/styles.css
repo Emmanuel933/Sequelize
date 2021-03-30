@@ -1,7 +1,7 @@
 body, html{
     font: normal 18px/1.5;
     font-family: 'Raleway', sans-serif;
-    background:blue;
+    background:rgb(148, 148, 233);
     color: black;
     min-width: 960px;
     color: black;
@@ -11,7 +11,7 @@ table{
 }
 
 td {
-   background-color: red;
+   background-color: rgb(247, 144, 144);
 
 }
 h1{
