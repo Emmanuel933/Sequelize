@@ -7,8 +7,9 @@ function getRandomIntInclusive(min, max) {
   async function macros() {
     const macrosFetch = await fetch('/api/wholeMeal');
     const macrosInfo = await macrosFetch.json();
-    return macrosInfo; 
+    return macrosInfo;
   }
+  
   async function windowActions() {
     const results = await macros();
     const meals = results.data;
@@ -20,136 +21,159 @@ function getRandomIntInclusive(min, max) {
     });
     console.table(selectedMeals);
     const information = document.querySelector('.target');
-    selectedMeals.forEach((meal) => {
+    selectedMeals.forEach((x) => {
       const potato = document.createElement('tr');
       potato.innerHTML = `
-          <td>${meal.meal_id}</td>
-          <td>${meal.meal_name}</td>
-          <td>${meal.calories}</td>
-          <td>${meal.carbs}g</td>
-          <td>${meal.sodium}mg</td>
-          <td>${meal.protein}g</td>
-          <td>${meal.fat}g</td>
-          <td>${meal.cholesterol}mg</td>
+          <td>${x.meal_id}</td>
+          <td>${x.meal_name}</td>
+          <td>${x.calories}</td>
+          <td>${x.carbs}g</td>
+          <td>${x.sodium}mg</td>
+          <td>${x.protein}g</td>
+          <td>${x.fat}g</td>
+          <td>${x.cholesterol}mg</td>
           `;
-        information.append(potato);
-    })
-    return selectedMeals;
-
-    window.onload = function () {
-
-        var chart = new CanvasJS.Chart("chartContainer", {
-            animationEnabled: true,
-            title:{
-                text: "Evening Sales in a Restaurant"
-            },
-            axisX: {
-                valueFormatString: "DDD"
-            },
-            axisY: {
-                prefix: "$"
-            },
-            toolTip: {
-                shared: true
-            },
-            legend:{
-                cursor: "pointer",
-                itemclick: toggleDataSeries
-            },
-            data: [{
-                type: "stackedBar",
-                name: "Meals",
-                showInLegend: "true",
-                xValueFormatString: "DD, MMM",
-                yValueFormatString: "$#,##0",
-                dataPoints: [
-                    { x: new Date(2017, 0, 30), y: 56 },
-                    { x: new Date(2017, 0, 31), y: 45 },
-                    { x: new Date(2017, 1, 1), y: 71 },
-                    { x: new Date(2017, 1, 2), y: 41 },
-                    { x: new Date(2017, 1, 3), y: 60 },
-                    { x: new Date(2017, 1, 4), y: 75 },
-                    { x: new Date(2017, 1, 5), y: 98 }
-                ]
-            },
-            {
-                type: "stackedBar",
-                name: "Snacks",
-                showInLegend: "true",
-                xValueFormatString: "DD, MMM",
-                yValueFormatString: "$#,##0",
-                dataPoints: [
-                    { x: new Date(2017, 0, 30), y: 86 },
-                    { x: new Date(2017, 0, 31), y: 95 },
-                    { x: new Date(2017, 1, 1), y: 71 },
-                    { x: new Date(2017, 1, 2), y: 58 },
-                    { x: new Date(2017, 1, 3), y: 60 },
-                    { x: new Date(2017, 1, 4), y: 65 },
-                    { x: new Date(2017, 1, 5), y: 89 }
-                ]
-            },
-            {
-                type: "stackedBar",
-                name: "Drinks",
-                showInLegend: "true",
-                xValueFormatString: "DD, MMM",
-                yValueFormatString: "$#,##0",
-                dataPoints: [
-                    { x: new Date(2017, 0, 30), y: 48 },
-                    { x: new Date(2017, 0, 31), y: 45 },
-                    { x: new Date(2017, 1, 1), y: 41 },
-                    { x: new Date(2017, 1, 2), y: 55 },
-                    { x: new Date(2017, 1, 3), y: 80 },
-                    { x: new Date(2017, 1, 4), y: 85 },
-                    { x: new Date(2017, 1, 5), y: 83 }
-                ]
-            },
-            {
-                type: "stackedBar",
-                name: "Dessert",
-                showInLegend: "true",
-                xValueFormatString: "DD, MMM",
-                yValueFormatString: "$#,##0",
-                dataPoints: [
-                    { x: new Date(2017, 0, 30), y: 61 },
-                    { x: new Date(2017, 0, 31), y: 55 },
-                    { x: new Date(2017, 1, 1), y: 61 },
-                    { x: new Date(2017, 1, 2), y: 75 },
-                    { x: new Date(2017, 1, 3), y: 80 },
-                    { x: new Date(2017, 1, 4), y: 85 },
-                    { x: new Date(2017, 1, 5), y: 105 }
-                ]
-            },
-            {
-                type: "stackedBar",
-                name: "Takeaway",
-                showInLegend: "true",
-                xValueFormatString: "DD, MMM",
-                yValueFormatString: "$#,##0",
-                dataPoints: [
-                    { x: new Date(2017, 0, 30), y: 52 },
-                    { x: new Date(2017, 0, 31), y: 55 },
-                    { x: new Date(2017, 1, 1), y: 20 },
-                    { x: new Date(2017, 1, 2), y: 35 },
-                    { x: new Date(2017, 1, 3), y: 30 },
-                    { x: new Date(2017, 1, 4), y: 45 },
-                    { x: new Date(2017, 1, 5), y: 25 }
-                ]
-            }]
-        });
-        chart.render();
-        
-        function toggleDataSeries(e) {
-            if(typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-                e.dataSeries.visible = false;
-            }
-            else {
-                e.dataSeries.visible = true;
-            }
-            chart.render();
+      information.append(potato);
+      const chart = new CanvasJS.Chart('chartContainer', {
+        animationEnabled: true,
+        title: {
+          text: 'Macros for INST 377'
+        },
+        axisX: {
+          valueFormatString: ''
+        },
+        axisY: {
+          prefix: ''
+        },
+        toolTip: {
+          shared: true
+        },
+        legend: {
+          cursor: 'pointer',
+          itemclick: toggleDataSeries
+        },
+        data: [{
+          type: 'stackedBar',
+          name: 'Calories',
+          showInLegend: 'true',
+          xValueFormatString: '',
+          yValueFormatString: '',
+          dataPoints: [
+            { label: selectedMeals[0].meal_name, y: selectedMeals[0].calories},
+            { label: selectedMeals[1].meal_name, y: selectedMeals[1].calories},
+            { label: selectedMeals[2].meal_name, y: selectedMeals[2].calories},
+            { label: selectedMeals[3].meal_name, y: selectedMeals[3].calories},
+            { label: selectedMeals[4].meal_name, y: selectedMeals[4].calories},
+            { label: selectedMeals[5].meal_name, y: selectedMeals[5].calories },
+            { label: selectedMeals[6].meal_name, y: selectedMeals[6].calories },
+            { label: selectedMeals[7].meal_name, y: selectedMeals[7].calories },
+            { label: selectedMeals[8].meal_name, y: selectedMeals[8].calories },
+            { label: selectedMeals[9].meal_name, y: selectedMeals[9].calories }
+          ]
+        }, {
+          type: 'stackedBar',
+          name: 'Carbs',
+          showInLegend: 'true',
+          xValueFormatString: '',
+          yValueFormatString: '',
+          dataPoints: [
+            { label: selectedMeals[0].meal_name, y: selectedMeals[0].carbs},
+            { label: selectedMeals[1].meal_name, y: selectedMeals[1].carbs},
+            { label: selectedMeals[2].meal_name, y: selectedMeals[2].carbs},
+            { label: selectedMeals[3].meal_name, y: selectedMeals[3].carbs},
+            { label: selectedMeals[4].meal_name, y: selectedMeals[4].carbs},
+            { label: selectedMeals[5].meal_name, y: selectedMeals[5].carbs},
+            { label: selectedMeals[6].meal_name, y: selectedMeals[6].carbs},
+            { label: selectedMeals[7].meal_name, y: selectedMeals[7].carbs},
+            { label: selectedMeals[8].meal_name, y: selectedMeals[8].carbs},
+            { label: selectedMeals[9].meal_name, y: selectedMeals[9].carbs}
+          ]
+        }, {
+          type: 'stackedBar',
+          name: 'Sodium',
+          showInLegend: 'true',
+          xValueFormatString: '',
+          yValueFormatString: '',
+          dataPoints: [
+            { label: selectedMeals[0].meal_name, y: selectedMeals[0].sodium},
+            { label: selectedMeals[1].meal_name, y: selectedMeals[1].sodium},
+            { label: selectedMeals[2].meal_name, y: selectedMeals[2].sodium},
+            { label: selectedMeals[3].meal_name, y: selectedMeals[3].sodium},
+            { label: selectedMeals[4].meal_name, y: selectedMeals[4].sodium},
+            { label: selectedMeals[5].meal_name, y: selectedMeals[5].sodium},
+            { label: selectedMeals[6].meal_name, y: selectedMeals[6].sodium},
+            { label: selectedMeals[7].meal_name, y: selectedMeals[7].sodium},
+            { label: selectedMeals[8].meal_name, y: selectedMeals[8].sodium},
+            { label: selectedMeals[9].meal_name, y: selectedMeals[9].sodium}
+          ]
+        },  {
+          type: 'stackedBar',
+          name: 'Protein',
+          showInLegend: 'true',
+          xValueFormatString: '',
+          yValueFormatString: '',
+          dataPoints: [
+            { label: selectedMeals[0].meal_name, y: selectedMeals[0].protein},
+            { label: selectedMeals[1].meal_name, y: selectedMeals[1].protein},
+            { label: selectedMeals[2].meal_name, y: selectedMeals[2].protein},
+            { label: selectedMeals[3].meal_name, y: selectedMeals[3].protein},
+            { label: selectedMeals[4].meal_name, y: selectedMeals[4].protein},
+            { label: selectedMeals[5].meal_name, y: selectedMeals[5].protein},
+            { label: selectedMeals[6].meal_name, y: selectedMeals[6].protein},
+            { label: selectedMeals[7].meal_name, y: selectedMeals[7].protein},
+            { label: selectedMeals[8].meal_name, y: selectedMeals[8].protein},
+            { label: selectedMeals[9].meal_name, y: selectedMeals[9].protein}
+          ]
+        }, {
+          type: 'stackedBar',
+          name: 'Fat',
+          showInLegend: 'true',
+          xValueFormatString: '',
+          yValueFormatString: '',
+          dataPoints: [
+            { label: selectedMeals[0].meal_name, y: selectedMeals[0].fat},
+            { label: selectedMeals[1].meal_name, y: selectedMeals[1].fat},
+            { label: selectedMeals[2].meal_name, y: selectedMeals[2].fat},
+            { label: selectedMeals[3].meal_name, y: selectedMeals[3].fat},
+            { label: selectedMeals[4].meal_name, y: selectedMeals[4].fat},
+            { label: selectedMeals[5].meal_name, y: selectedMeals[5].fat},
+            { label: selectedMeals[6].meal_name, y: selectedMeals[6].fat},
+            { label: selectedMeals[7].meal_name, y: selectedMeals[7].fat},
+            { label: selectedMeals[8].meal_name, y: selectedMeals[8].fat},
+            { label: selectedMeals[9].meal_name, y: selectedMeals[9].fat}
+          ]
+        },  {
+          type: 'stackedBar',
+          name: 'Carbs',
+          showInLegend: 'true',
+          xValueFormatString: '',
+          yValueFormatString: '',
+          dataPoints: [
+            { label: selectedMeals[0].meal_name, y: selectedMeals[0].cholesterol},
+            { label: selectedMeals[1].meal_name, y: selectedMeals[1].cholesterol},
+            { label: selectedMeals[2].meal_name, y: selectedMeals[2].cholesterol},
+            { label: selectedMeals[3].meal_name, y: selectedMeals[3].cholesterol},
+            { label: selectedMeals[4].meal_name, y: selectedMeals[4].cholesterol},
+            { label: selectedMeals[5].meal_name, y: selectedMeals[5].cholesterol},
+            { label: selectedMeals[6].meal_name, y: selectedMeals[6].cholesterol},
+            { label: selectedMeals[7].meal_name, y: selectedMeals[7].cholesterol},
+            { label: selectedMeals[8].meal_name, y: selectedMeals[8].cholesterol},
+            { label: selectedMeals[9].meal_name, y: selectedMeals[9].cholesterol}
+          ]
         }
-        
-        }
+        ]
+      });
+      chart.render();
   
+      function toggleDataSeries(e) {
+        if (typeof (e.dataSeries.visible) === 'undefined' || e.dataSeries.visible) {
+          e.dataSeries.visible = false;
+        } else {
+          e.dataSeries.visible = true;
+        }
+        chart.render();
+      }
+    });
+    return selectedMeals;
   }
   window.onload = windowActions;
